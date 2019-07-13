@@ -12,6 +12,8 @@
 | 18_删除链表中重复的节点       | done               | |
 | 19_正则表达式匹配                  | known bug     | 5 |
 | 20_表示数值的字符串               | done              | 2 |
+| 21_使奇数位于偶数前              | done              | 1 |
+
 
 <sub>Mark=5: **hard**, Mark=3: **moderate**, Mark=1: **eazy**</sub>
 
