@@ -15,6 +15,7 @@
 | 21_使奇数位于偶数前              | done              | 1 |
 | 22_链表中倒数第k个节点         | done              | 3 |
 | 23_链表中环的入口节点           | done              | 3.5 |
+| 24_反转链表                             | done              | 1 |
 
 
 <sub>Mark=5: **hard**, Mark=3: **moderate**, Mark=1: **eazy**</sub>
