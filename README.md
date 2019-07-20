@@ -3,6 +3,9 @@
 - Python 3.6 or higher
 
 ## 目录
+
+<sub>Mark=5: **hard**, Mark=3: **moderate**, Mark=1: **eazy**</sub>
+
 ### Ch3: 高质量的代码
 
 | Task                                         | Status          | Mark  |
@@ -21,6 +24,9 @@
 
 TODO: 给所有树的题目加上Visualization
 
-<sub>Mark=5: **hard**, Mark=3: **moderate**, Mark=1: **eazy**</sub>
+### Ch4: 解决面试题的思路
 
+| Task                                         | Status          | Mark  |
+| -------------|:-------------:| -----:|
+| 27_二叉树的镜像                    | done              | 1.5 |
 
