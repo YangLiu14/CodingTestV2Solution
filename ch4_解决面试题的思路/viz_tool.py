@@ -1,3 +1,40 @@
+from queue import Queue
+def print_tree_from_top_to_bottom(root):
+    """
+        分行从上到下打印二叉树
+        """
+    if root is None:
+        return
+    assert isinstance(root, TreeNode)
+
+node_queue = Queue()
+node_queue.put(root)
+n_node = 1
+    next_n_node = 0
+    while not node_queue.empty():
+        node = node_queue.get()
+        print(node.val, end=' ')
+        
+        if node.left:
+            next_n_node += 1
+            node_queue.put(node.left)
+        
+        if node.right:
+            next_n_node += 1
+            node_queue.put(node.right)
+        
+        n_node -= 1
+        if n_node == 0:
+            print()
+            n_node = next_n_node
+            next_n_node = 0
+
+
+
+
+
+
+
 import matplotlib.pyplot as plt
 import networkx as nx
 from matplotlib import lines
