@@ -22,7 +22,7 @@
 | 25_合并两个排序的链表           | done              | 1 |
 | 26_树的子结构                         | test missing   | 3.5 |
 
-TODO: 给所有树的题目加上Visualization
+TODO: 给所有树的题目加上Visualization。可以利用32_从上到下打印二叉树的代码作为基础。
 
 ### Ch4: 解决面试题的思路
 
