@@ -51,5 +51,7 @@ TODO: 给所有树的题目加上Visualization。可以利用32_从上到下打�
 
 TODO: 
 Task 39: 练习到能够秒写partition()
+
 Task 40: 复习Max heap/ Min heap的相关知识，各个不同操作的复杂度分析
+
 写个所有二叉树结构的python实现 min/max heap，二叉搜索树，红黑，AVL
