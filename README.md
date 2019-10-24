@@ -51,10 +51,13 @@ TODO: 给所有树的题目加上Visualization。可以利用32_从上到下打�
 | 42_连续子数组的最大和                        | done             | 4  |
 | 43_1到n整数中1出现的次数                  | done             | 5  |
 | 44_数字序列中某一位的数字                | done             | 2  |
+| 45_把数组排成最小的书                        | done             | 3  |
 
 TODO: 
 Task 39: 练习到能够秒写partition()
 
 Task 40: 复习Max heap/ Min heap的相关知识，各个不同操作的复杂度分析
+
+Task 45: 把其他的sort算法也实现一遍
 
 写个所有二叉树结构的python实现 min/max heap，二叉搜索树，红黑，AVL
