@@ -58,8 +58,9 @@ TODO: 给所有树的题目加上Visualization。可以利用32_从上到下打�
 | 49_丑数                                                  | done             | 5  |
 | 50_第一个只出现一次的字符                 | done             | 1  |
 | 51_数组中的逆序对                               | done             | 5  |
+| 52_两个链表的第一个公共节点                              | done             | 4  |
 
-TODO: 
+TODO:
 Task 39: 练习到能够秒写partition()
 
 Task 40: 复习Max heap/ Min heap的相关知识，各个不同操作的复杂度分析
