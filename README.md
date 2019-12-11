@@ -1,6 +1,7 @@
 # CodingTestV2Solution
 剑指offer第二版：简要总结和Python答案。
 - Python 3.6 or higher
+- Xeus-Cling (some of the jupyter notebooks here use Xeus-Cling to run C++ code). For further details, follow this [Tutorial](https://www.learnopencv.com/xeus-cling-run-c-code-in-jupyter-notebook/)
 
 ## 目录
 
@@ -80,4 +81,6 @@ Task 45: 把其他的sort算法也实现一遍
 | 59_队列的最大值 | done | 3 |
 | 60_n个骰子的点数 | done | 5 |
 | 61_扑克牌中的顺子 | done | 1 |
-
+| 62_圆圈中最后剩下的数字 | todo | 3.5 |
+| 63_股票的最大利润| done | 2.5 |
+| 64_求1到n的和(C++)| todo | 4 |
