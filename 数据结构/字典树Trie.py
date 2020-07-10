@@ -2,9 +2,6 @@
 __author__ = "Yang Liu"
 __email__ = "lander14@outlook.com"
 
-import glob
-import os
-import tqdm
 
 class Trie:
     def __init__(self):
