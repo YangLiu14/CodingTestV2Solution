@@ -46,5 +46,3 @@ class Trie:
             curr_node = curr_node[c]
 
         return True
-	
-

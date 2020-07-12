@@ -4,10 +4,48 @@ __email__ = "lander14@outlook.com"
 
 
 from typing import List, Dict
+"""
+Heap 也被称作优先级队列
 
-# Heap 也被称作优先级队列
+用数组表示的heap，下标在树结构中的关系
+左：2*i + 1
+右: 2*i + 2
+父: (i-1) // 2   （默认数组下标从0开始，如果从1开始，则是i//2）
+"""
+
 #####################################
-# MAX HEAP
+# Python heapq 使用方法
+#####################################
+
+import heapq
+# ================
+# min heap
+# ================
+minheap = [1, 2, 3, 4, 5]
+heapq.heapify(minheap)
+# Get current min
+current_min = heapq.heappop(minheap)
+# Push a new number
+heapq.heappush(minheap, 10)
+
+# ================
+# max heap
+# ================
+maxheap = [1, 2, 3, 4, 5]
+heapq._heapify_max(maxheap)
+# Get current max
+current_max = heapq._heappop_max(maxheap)
+# Push a new number, and rearrange as maxheap
+heapq.heappush(maxheap, 10)
+heapq._heapify_max(maxheap)
+
+#####################################
+# END of Python heapq 使用方法
+#####################################
+
+
+#####################################
+# MAX HEAP 手动实现
 #####################################
 def heapInsert(arr: List, index: int):
     """在表示max-heap的数组中的index位置插入一个数字。
@@ -66,4 +104,4 @@ def heapSort(arr: List):
 
 
 if __name__ == "__main__":
-    
+    pass
