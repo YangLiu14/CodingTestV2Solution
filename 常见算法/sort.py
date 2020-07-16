@@ -46,7 +46,24 @@ students = [stu1, stu2, stu3, stu4]
 students.sort(key=lambda stu: stu.age)
 print([student.name for student in students])
 
+# Custom function
+# ===============================
+# 5. 根据自定义规则来排序
+# ===============================
+import functools
+str_list = ['abc', 'de', 'b', 'ba']
 
+def str_compare(a: str, b: str):
+    if a+b > b+a:
+        return 1
+    elif a+b < b+a:
+        return -1
+    else:
+        return 0
+
+str_list = sorted(str_list, key=functools.cmp_to_key(str_compare))
+print(str_list)
+# >> ['abc', 'ba', 'b', 'de']
 
 ##############################
 # 常见排序算法
