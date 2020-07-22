@@ -94,6 +94,70 @@ build_tree(root_val, n)
 # ================================================
 
 
+#####################################
+# 读取LeetCode的输入 构建二叉树
+#####################################
+def build_tree_leetcode(arr: List) -> TreeNode:
+    if not arr:
+        return
+
+    val = arr.pop(0)
+    root = TreeNode(val)
+    queue = [root]
+    while queue and arr:
+        node = queue.pop(0)
+        left = arr.pop(0)
+        right = arr.pop(0)
+
+        if left:
+            node.left = TreeNode(left)
+            queue.append(node.left)
+        if right:
+            node.right = TreeNode(right)
+            queue.append(node.right)
+
+    return root
+
+# main
+arr = [5, 4, 8, 11, None, 13, 4, 7, 2, None, None, 5, 1]
+root = build_tree_leetcode(arr)
+# ================================================
+# ================================================
+
+#####################################
+# 打印二叉树（横向看）
+#####################################
+def print_tree(root: TreeNode, num_nodes: int):
+    """
+    num_nodes: 树中的节点数（不包括None）
+    """
+    print("Binary Tree")
+    print_inOrder(root, 0, "H", num_nodes)
+    print()
+
+
+def print_inOrder(root: TreeNode, height: int, to: str, length: int):
+    if not root:
+        return
+    print_inOrder(root.right, height + 1, "v", length)
+    val: str = to + str(root.val) + to
+    lenM = len(val)
+    lenL = (length - lenM) // 2
+    lenR = length - lenM - lenL
+    val = get_space(lenL) + val + get_space(lenR)
+    print(get_space(height * length) + val)
+    print_inOrder(root.left, height + 1, "^", length)
+
+
+def get_space(num: int) -> str:
+    space = ' '
+    buf = list()
+    for i in range(num // 2):
+        buf.append(space)
+    return "".join(buf)
+# ================================================
+# ================================================
+
 if __name__ == "__main__":
     pass
 
