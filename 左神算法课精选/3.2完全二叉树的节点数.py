@@ -62,4 +62,4 @@ if __name__ == "__main__":
     root.left.left = TreeNode(4)
     root.left.right = TreeNode(5)
     root.right.left = TreeNode(6)
-    print(nodeNum(root))
+    print(nodeNum(root))  # True
