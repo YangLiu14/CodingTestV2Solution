@@ -1,4 +1,4 @@
- """binary_tree.py"""
+"""binary_tree.py"""
 __author__ = "Yang Liu"
 __email__ = "lander14@outlook.com"
 
@@ -26,10 +26,13 @@ class TreeNode(object):
 # 5 0 0
 # 3 0 0
 # 表示：
-#      1
-#    2   3
-#  4  5
-#   6
+#       1
+#     /   \
+#    2     3
+#   / \
+#  4   5
+#   \
+#    6
 #####################################
 # 递归读取输入
 def build_tree(node, count):
