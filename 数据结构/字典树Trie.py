@@ -1,4 +1,3 @@
-"""common.py: common tools"""
 __author__ = "Yang Liu"
 __email__ = "lander14@outlook.com"
 
