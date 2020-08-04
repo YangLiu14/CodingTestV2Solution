@@ -65,6 +65,31 @@ str_list = sorted(str_list, key=functools.cmp_to_key(str_compare))
 print(str_list)
 # >> ['abc', 'ba', 'b', 'de']
 
+
 ##############################
 # 常见排序算法
 ##############################
+# ============================
+# Quick Sort
+# ============================
+def partition(arr, low, high):
+    i = low - 1  # i 确定了比pivot小的数的右边界
+    pivot = arr[high]
+
+    # 遍历除了pivot之外的数组
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i += 1  # 如果找到了比pivot小的数，那右边界就扩大一个
+            arr[j], arr[i] = arr[i], arr[i]  # 把这个小的数字换到右边界所在的位置上
+
+    # 最后pivot应当在的位置，就是右边界的右边一个位置
+    arr[i+1], arr[high] = arr[high], arr[i+1]
+    return i+1
+
+def quickSort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+
+        quickSort(arr, low, pi - 1)   # before pivot
+        quickSort(arr, pi + 1, high)  # after pivot
+
