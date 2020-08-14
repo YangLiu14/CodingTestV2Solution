@@ -1,7 +1,6 @@
-"""common.py: common tools"""
+"""playground.py: playground for python coding test"""
 __author__ = "Yang Liu"
 __email__ = "lander14@outlook.com"
-
 
 from collections import Counter, defaultdict, deque
 from typing import List, Dict
@@ -56,14 +55,17 @@ class Solution:
     def your_func(self):
         pass
 
+
 #####################################
 # End of code
 #####################################
-
+# input: mask
+# output:  count,  bboxs
 
 if __name__ == "__main__":
 
     sol = Solution()
+
     ###################################
     # 测试模块
     ###################################

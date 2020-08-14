@@ -10,12 +10,12 @@ class UnionFindSet(object):
         :param data_list: 输入数据
         """
         self.parent = dict()
-        self.size = dict()
+        self.size_map = dict()
 
         for node in data_list:
             # 刚开始时，每个node都是一个独立的集合
             self.parent[node] = node
-            self.size[node] = 1
+            self.size_map[node] = 1
 
     def find_head(self, node):
         """
@@ -56,15 +56,32 @@ class UnionFindSet(object):
         b_head = self.find_head(node_b)
 
         if a_head != b_head:
-            a_set_size = self.size[a_head]
-            b_set_size = self.size[b_head]
+            a_set_size = self.size_map[a_head]
+            b_set_size = self.size_map[b_head]
             # 比较两个集合的大小，小集合并到大集合下面去
             if a_set_size >= b_set_size:
                 self.parent[b_head] = a_head
-                self.size[a_head] = a_set_size + b_set_size
+                self.size_map[a_head] = a_set_size + b_set_size
+                del self.size_map[b_head]
             else:
                 self.parent[a_head] = b_head
-                self.size[b_head] = a_set_size + b_set_size
+                self.size_map[b_head] = a_set_size + b_set_size
+                del self.size_map[a_head]
+
+    def max_size(self):
+        """
+        返回所有集合中包含元素最多的元素个数
+        """
+        ans = 0
+        for s in self.size_map.values():
+            ans = max(ans, s)
+        return ans
+
+    def num_sets(self):
+        """
+        返回一共有多少个集合
+        """
+        return len(self.size_map.keys())
             
 
 

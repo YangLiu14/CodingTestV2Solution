@@ -12,9 +12,12 @@ class Trie:
         Inserts a word into the trie.
         """
         curr_node = self.root  # self.root 会随着curr_node的改变而改变
+        # 遍历word中每一个字符
         for ch in word:
-            if ch not in curr_node:
+            # 如果字符不在curr_node的key里面则单独开一个dict，说明接下来的字符都是新的连接，新开一个分支
+            if ch not in curr_node.keys():
                 curr_node[ch] = dict()
+            # 继续往下遍历，如果是新开的分支，那么curr_node为空字典
             curr_node = curr_node[ch]
         curr_node[self.end] = True
 
