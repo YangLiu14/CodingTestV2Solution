@@ -116,8 +116,14 @@ def build_tree_leetcode(arr: List) -> TreeNode:
     queue = [root]
     while queue and arr:
         node = queue.pop(0)
-        left = arr.pop(0)
-        right = arr.pop(0)
+        if arr:
+            left = arr.pop(0)
+        else:
+            left = None
+        if arr:
+            right = arr.pop(0)
+        else:
+            right = None
 
         if left:
             node.left = TreeNode(left)
