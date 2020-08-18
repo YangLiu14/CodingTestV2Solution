@@ -1,6 +1,7 @@
 __author__ = "Yang Liu"
 __email__ = "lander14@outlook.com"
 
+# 字典树（也称为前缀树）的实现
 
 class Trie:
     def __init__(self):

@@ -64,6 +64,82 @@ def recursive2(string: str, index: int, words: List[str]) -> int:
             ways += recursive(string, index+l, words)
 
     return ways
+# ===================================================
+# ===================================================
+
+# ===================================================
+# 动态规划
+
+# 从上面第一个递归函数可以看出：
+# 退出条件是 dp[N] = 1，然后再慢慢往回推导
+# 也就是说dp[i] 应该是会依赖后面 i+1 ～ N 的所有位置
+# ===================================================
+def word_ensemble3(string: str, words: List[str]) -> int:
+    words_set = set(words)
+    N = len(string)
+
+    dp = [0] * (N + 1)
+    dp[N] = 1
+
+    for i in reversed(range(N)):  # i 反向遍历字符串，从 N-1 遍历到 0
+        for j in range(i, N):     # j 从i开始，往后遍历
+            if string[i:j+1] in words:
+                # 取substring，如果substring是属于words里给定的一个单词，则加上
+                dp[i] += dp[j+1]
+
+    return dp[0]
+
+# ===================================================
+# 进一步优化：
+# if string[i:j+1] in words
+# 这个查询过程，可以用字典树来进行优化
+# ===================================================
+
+class TrieNode:
+    def __init__(self):
+        self.nexts = dict()
+        self.end = False
+
+
+def word_ensemble4(string: str, words: List[str]) -> int:
+
+    trie = init_trie(words)
+
+    # DP
+    words_set = set(words)
+    N = len(string)
+
+    dp = [0] * (N + 1)
+    dp[N] = 1
+
+    for i in reversed(range(N)):  # i 反向遍历字符串，从 N-1 遍历到 0
+        # 每次遍历到string的一个新的位置，都从头开始找字典树
+        cur = trie
+        for j in range(i, N):  # j 从i开始，往后遍历
+            # 用以下字典树的查询代替： if string[i:j + 1] in words:
+            if string[j] not in cur.nexts.keys():
+                # 如果遍历到字典树某个地方根本找不到当前字符，直接break，后面的字符必然也不在字典树中
+                break
+            cur = cur.nexts[string[j]]
+            if cur.end:
+                dp[i] += dp[j + 1]
+
+    return dp[0]
+
+
+def init_trie(words: List[str]):
+    root = TrieNode()
+    for w in words:
+        node = root
+        for char in w:
+            if char not in node.nexts.keys():
+                node.nexts[char] = TrieNode()
+            node = node.nexts[char]
+        node.end = True
+
+    return root
+# ===================================================
+# ===================================================
 
 
 #####################################################
@@ -114,7 +190,9 @@ def random_seeds(candidates: List[str], max_arr_len: int, max_str_len: int):
 #####################################################
 
 if __name__ == "__main__":
-    # print(word_ensemble("aaaab", ["a", "aa", "b"]))
+
+    # print(word_ensemble4("aaaab", ["a", "aa", "b"]))
+
     candidates = ['a', 'b']
     max_arr_len = 20
     max_str_len = 4
@@ -125,10 +203,15 @@ if __name__ == "__main__":
         sample = generate_random_sample(candidates, max_arr_len, max_str_len, joint)
         ans1 = word_ensemble1(sample.string, sample.words)
         ans2 = word_ensemble2(sample.string, sample.words)
-        if ans1 != ans2:
+        ans3 = word_ensemble3(sample.string, sample.words)
+        ans4 = word_ensemble4(sample.string, sample.words)
+        if ans1 == ans2 == ans3 == ans4:
+            continue
+        else:
             test_result = False
+            print("The following test case failed")
             sample.print_info()
+            print("ans1=" + str(ans1), "ans2=" + str(ans2), "ans3=" + str(ans3), "ans4=" + str(ans4))
             break
 
     print(str(num_tests) + "次随机测试是否通过：" + str(test_result))
-
