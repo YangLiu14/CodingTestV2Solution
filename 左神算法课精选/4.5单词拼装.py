@@ -1,7 +1,7 @@
 __author__ = "Yang Liu"
 __email__ = "lander14@outlook.com"
 
-
+import tqdm
 from typing import List, Dict
 
 #####################################################
@@ -24,8 +24,11 @@ from typing import List, Dict
 # ===================================================
 # 递归方法
 # ===================================================
-def word_ensemble(string: str, words: List[str]) -> int:
-    # return recursive(string, 0, words)
+def word_ensemble1(string: str, words: List[str]) -> int:
+    return recursive(string, 0, words)
+
+
+def word_ensemble2(string: str, words: List[str]) -> int:
     return recursive2(string, 0, words)
 
 
@@ -72,28 +75,60 @@ class RandomSample:
         self.string = s
         self.words = w
 
+    def print_info(self):
+        print(self.string)
+        print(self.words)
 
-def generate_random_sample(candidates: List[str], num: int, length: int, joint: int):
-    pass
+
+def generate_random_sample(candidates: List[str], max_arr_len: int, max_str_len: int, joint: int):
+    word_book = random_seeds(candidates, max_arr_len, max_str_len)
+    # get rid of duplicated words in word_book
+    test_set = set(word_book)
+    word_book = list(test_set)
+
+    all = list()
+    for i in range(joint):
+        elem = word_book[random.randint(0, len(word_book)-1)]
+        all.append(elem)
+
+    return RandomSample("".join(all), word_book)
 
 
 def random_seeds(candidates: List[str], max_arr_len: int, max_str_len: int):
-    # init arr，大小是1 ~ num
-    arr = list()
+    """
+    随机生成题目中的 words 数组
+    """
+    # init arr，大小是1 ~ max_arr_len
+    word_book = list()
     arr_len = random.randint(1, max_arr_len)
     for i in range(arr_len):
         string = ''
         str_len = random.randint(1, max_str_len)
         for j in range(str_len):
             string += candidates[random.randint(0, len(candidates)-1)]
-        arr.append(string)
+        word_book.append(string)
 
-    return arr
+    return word_book
+#####################################################
+# END of 随机样本生成器
+#####################################################
 
 if __name__ == "__main__":
     # print(word_ensemble("aaaab", ["a", "aa", "b"]))
+    candidates = ['a', 'b']
+    max_arr_len = 20
+    max_str_len = 4
+    joint = 5
+    num_tests = 3000
+    test_result = True
+    for i in tqdm.tqdm(range(num_tests)):
+        sample = generate_random_sample(candidates, max_arr_len, max_str_len, joint)
+        ans1 = word_ensemble1(sample.string, sample.words)
+        ans2 = word_ensemble2(sample.string, sample.words)
+        if ans1 != ans2:
+            test_result = False
+            sample.print_info()
+            break
 
-    print(random_seeds(["a", "b"], 10, 4))
-    print(random_seeds(["a", "b"], 10, 4))
-    print(random_seeds(["a", "b"], 10, 4))
-    print(random_seeds(["a", "b"], 10, 4))
+    print(str(num_tests) + "次随机测试是否通过：" + str(test_result))
+
