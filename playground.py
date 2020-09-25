@@ -48,12 +48,12 @@ class TreeNode(object):
 #####################################
 # Insert your solution there
 #####################################
-class Solution:
-    def __init__(self):
-        pass
-
-    def your_func(self):
-        pass
+# class Solution:
+#     def __init__(self):
+#         pass
+#
+#     def your_func(self):
+#         pass
 
 
 #####################################
@@ -61,15 +61,25 @@ class Solution:
 #####################################
 
 
-if __name__ == "__main__":
-    sol = Solution()
-    ###################################
-    # 测试模块
-    ###################################
 
-    ###################################
-    # END of 测试模块
-    ###################################
+
+# if __name__ == "__main__":
+#     ###################################
+#     # 测试模块
+#     ###################################
+#
+#     ###################################
+#     # END of 测试模块
+#     ###################################
+
+
+
+
+if __name__ == "__main__":
+    n = int(sys.stdin.readline().strip())
+    line = sys.stdin.readline().strip()
+    values = list(map(int, line.split()))
+    values = values[:n]
 
 
 
