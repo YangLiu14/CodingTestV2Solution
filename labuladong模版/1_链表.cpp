@@ -148,7 +148,7 @@ bool traverse(ListNode* right) {
 
     // Main
     bool res = traverse(right->next);
-    
+
 
     // Return
 }
