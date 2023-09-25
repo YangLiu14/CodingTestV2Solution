@@ -21,6 +21,7 @@ void slidingWindow(string s) {
         right++;
         // 进行窗口内数据的一系列更新
         /** ... **/
+        // window[c]++;
 
         /*** debug ***/
         printf("window: [%d, %d]\n", left, right);
@@ -34,6 +35,7 @@ void slidingWindow(string s) {
             left++;
             // 进行窗口内数据的一系列更新
             /** ... **/
+            // window[d]--;
         }
     }
 }
