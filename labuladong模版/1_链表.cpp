@@ -135,20 +135,25 @@ ListNode* reverseBetween(ListNode* head, int k) {
  * leetcode 234.
  * 回文链表
  */
-ListNode *left;
 
-bool isPalindrome(ListNode* head) {
-    left = head;
-    return traverse(head);
-}
+class Solution {
+private:
+    ListNode* left;
+public:
+    bool isPalindrome(ListNode* head) {
+        this->left = head;
+        return traverse(head);
+    }
 
-bool traverse(ListNode* right) {
-    // Base case
-    if (right == nullptr) return true;
+    bool traverse(ListNode* right) {
+        // Base
+        if (right == nullptr) return true;
 
-    // Main
-    bool res = traverse(right->next);
-
-
-    // Return
-}
+        // Main
+        bool res = traverse(right->next);
+        res = res && (this->left->val == right->val);
+        this->left = this->left->next;
+        // Return
+        return res;
+    }
+};
