@@ -1,5 +1,12 @@
 """
 Super simplified MHA
+
+1. 定义Q, K, V的shape (B, seq_len, embed_dim)
+2. 经过Linear层 (embed_dim 分为 n_heads个的 head_dim)
+3. Attention
+4. FC层
+
+这里没有考虑positional encoding
 """
 import torch
 import torch.nn as nn
@@ -57,4 +64,52 @@ class MultiHeadAttention(nn.Module):
         out = self.fc_out(out)
 
         return out
+
+
+class TransformerBlock(nn.Module):
+    def __init__(self, embed_size, n_heads, dropout, forward_expansion):
+        super(TransformerBlock, self).__init__()
+        self.attention = MultiHeadAttention(embed_size, n_heads)
+        self.norm1 = nn.LayerNorm(embed_size)
+        self.norm2 = nn.LayerNorm(embed_size)
+
+        self.feed_forward = nn.Sequential(
+            nn.Linear(embed_size, forward_expansion * embed_size),
+            nn.ReLU(),
+            nn.Linear(forward_expansion * embed_size, embed_size),
+        )
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, query, key, value):
+        attention = self.attention(query, key, value)
+        x = self.norm1(attention + query)
+        x = self.dropout(x)
+        forward = self.feed_forward(x)
+        x = self.norm2(forward + x)  # residual
+        out = self.dropout(x)
+        return out
+
+
+class Encoder(nn.Module):
+    def __init__(self, embed_size, num_layers, n_heads, forward_expansion, dropout):
+        super(Encoder, self).__init__()
+        self.embed_size = embed_size
+        self.layers = nn.ModuleList(
+            TransformerBlock(
+                embed_size,
+                n_heads,
+                dropout=dropout,
+                forward_expansion=forward_expansion
+            ) for _ in range(num_layers)
+        )
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x):
+        x = self.dropout(x)
+
+        for layer in self.layers:
+            out = layer(query=x, key=x, value=x)  # self-attention
+
+        return out
+
 
